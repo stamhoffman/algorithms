@@ -34,3 +34,13 @@ std::pair<T, T> MinMax(Conteiner conteiner) {
   return {min, max};
 }
 
+template <class Conteiner, typename T>
+std::pair<T, T> MinMax(Conteiner conteiner) {
+  T min = *conteiner.begin();
+  T max = *conteiner.begin();
+  for (const auto &unit : conteiner) {
+    min = unit < min ? unit : min;
+    max = unit > max ? unit : max;
+  }
+  return {min, max};
+}
