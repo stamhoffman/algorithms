@@ -9,7 +9,7 @@ T SearchNumber(Conteiner conteiner, int N) {
 template <class Conteiner, typename T>
 size_t Count(Conteiner conteiner, int number) {
   T count = 0;
-  for (auto unit : conteiner) {
+  for (const auto &unit : conteiner) {
     if (unit == number) {
       count += 1;
     }
