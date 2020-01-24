@@ -1,5 +1,5 @@
-template <class Conteiner, typename T>
-T SearchNumber(Conteiner conteiner, int N) {
+template <template <typename, typename> class Conteiner, typename T>
+T SearchNumber(Conteiner<T, std::allocator<T>> conteiner, int N) {
   auto S = std::accumulate(conteiner.begin(), conteiner.end(), 0);
   auto K = N - 1;
   auto num = (K + 1) * (K + 2) / 2 - S;
@@ -9,7 +9,7 @@ T SearchNumber(Conteiner conteiner, int N) {
 template <class Conteiner>
 size_t Count(Conteiner conteiner, int number) {
   size_t count = 0;
-  for (const auto &unit : conteiner) {
+  for (auto unit : conteiner) {
     if (unit == number) {
       count += 1;
     }
@@ -17,25 +17,17 @@ size_t Count(Conteiner conteiner, int number) {
   return count;
 }
 
-template <class Conteiner, typename T>
-std::pair<T, T> MinMax(Conteiner conteiner) {
-  T min = *conteiner.begin();
-  T max = *conteiner.begin();
+template <template <typename, typename> class Conteiner, typename T>
+std::map<T, T> Count(const Conteiner<T, std::allocator<T>> &conteiner) {
+  std::map<T, T> data;
   for (const auto &unit : conteiner) {
-    if (unit < min) {
-      min = unit;
-    }
-    if (unit > max) {
-      if (unit > max) {
-        max = unit;
-      }
-    }
+    data[unit] += 1;
   }
-  return {min, max};
+  return data;
 }
 
-template <class Conteiner, typename T>
-std::pair<T, T> MinMax(Conteiner conteiner) {
+template <template <typename, typename> class Conteiner, typename T>
+std::pair<T, T> MinMax(const Conteiner<T, std::allocator<T>> &conteiner) {
   T min = *conteiner.begin();
   T max = *conteiner.begin();
   for (const auto &unit : conteiner) {
@@ -44,3 +36,4 @@ std::pair<T, T> MinMax(Conteiner conteiner) {
   }
   return {min, max};
 }
+
