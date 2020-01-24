@@ -5,3 +5,15 @@ T SearchNumber(Conteiner conteiner, int N) {
   auto num = (K + 1) * (K + 2) / 2 - S;
   return num;
 }
+
+template <class Conteiner, typename T>
+size_t Count(Conteiner conteiner, int number) {
+  T count = 0;
+  for (auto unit : conteiner) {
+    if (unit == number) {
+      count += 1;
+    }
+  }
+  return static_cast<size_t>(count);
+}
+
