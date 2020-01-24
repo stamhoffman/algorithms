@@ -1,5 +1,5 @@
 template <template <typename, typename> class Conteiner, typename T>
-T SearchNumber(Conteiner<T, std::allocator<T>> conteiner, int N) {
+T SearchNumber(const Conteiner<T, std::allocator<T>> &conteiner, int N) {
   auto S = std::accumulate(conteiner.begin(), conteiner.end(), 0);
   auto K = N - 1;
   auto num = (K + 1) * (K + 2) / 2 - S;
@@ -7,9 +7,9 @@ T SearchNumber(Conteiner<T, std::allocator<T>> conteiner, int N) {
 }
 
 template <class Conteiner>
-size_t Count(Conteiner conteiner, int number) {
+size_t Count(const Conteiner &conteiner, int number) {
   size_t count = 0;
-  for (auto unit : conteiner) {
+  for (const auto &unit : conteiner) {
     if (unit == number) {
       count += 1;
     }
