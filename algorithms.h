@@ -17,3 +17,20 @@ size_t Count(Conteiner conteiner, int number) {
   return static_cast<size_t>(count);
 }
 
+template <class Conteiner, typename T>
+std::pair<T, T> MinMax(Conteiner conteiner) {
+  T min = *conteiner.begin();
+  T max = *conteiner.begin();
+  for (const auto &unit : conteiner) {
+    if (unit < min) {
+      min = unit;
+    }
+    if (unit > max) {
+      if (unit > max) {
+        max = unit;
+      }
+    }
+  }
+  return {min, max};
+}
+
